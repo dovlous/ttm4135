@@ -29,6 +29,11 @@ class UserController extends Controller
         $username = $request->post('username');
         $password = $request->post('password');
 
+        if(strlen($username) === 0 || strlen($password) === 0) {
+            $this->app->flashNow('error', 'Incorrect username/password combination.');
+            $this->render('newUserForm.twig', []);
+            return;
+        }
 
         $user = User::makeEmpty();
         $user->setUsername($username);
