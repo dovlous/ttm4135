@@ -29,8 +29,17 @@ class UserController extends Controller
         $username = $request->post('username');
         $password = $request->post('password');
 
+        // Verify that the user actually gave us data
         if(strlen($username) === 0 || strlen($password) === 0) {
             $this->app->flashNow('error', 'Incorrect username/password combination.');
+            $this->render('newUserForm.twig', []);
+            return;
+        }
+
+        // Verify that the username is new
+        $olduser = User::findByUser($username);
+        if ($olduser !== null) {
+            $this->app->flashNow('error', 'Username already taken.');
             $this->render('newUserForm.twig', []);
             return;
         }
@@ -50,7 +59,7 @@ class UserController extends Controller
           $user->setBio($bio);
         }
 
-        
+    
         $user->save();
         $this->app->flash('info', 'Thanks for creating a user. You may now log in.');
         $this->app->redirect('/login');
