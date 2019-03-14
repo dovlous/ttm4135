@@ -86,3 +86,4 @@ class Auth
         session_regenerate_id();
     }
 }
+

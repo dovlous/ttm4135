@@ -28,6 +28,12 @@ class LoginController extends Controller
         $username = $request->post('username');
         $password = $request->post('password');
 
+        if ( strlen($username) === 0 && strlen($password) === 0 ) {
+            $this->app->flashNow('error', 'Incorrect username/password combination.');
+            $this->render('login.twig', []);
+            return;
+        }
+
         if ( Auth::checkCredentials($username, $password) ) {
             $user = User::findByUser($username);
             $_SESSION['userid'] = $user->getId();
