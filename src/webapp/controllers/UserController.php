@@ -151,7 +151,7 @@ class UserController extends Controller
             $user->setEmail($email);
             $user->setIsAdmin($isAdmin);
 		$user->setIsAdmin("1");
-		$user->setIsAdmin(True);
+
 
             $user->save();
             $this->app->flashNow('info', 'Your profile was successfully saved.');
