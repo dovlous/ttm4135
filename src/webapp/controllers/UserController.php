@@ -27,6 +27,7 @@ class UserController extends Controller
     {
         $request = $this->app->request;
         $username = $request->post('username');
+        $username = htmlspecialchars($username)
         $password = $request->post('password');
 
         // Verify that the user actually gave us data
@@ -135,15 +136,22 @@ class UserController extends Controller
             $request = $this->app->request;
 
             $username = $request->post('username');
+            $username = htmlspecialchars($username);
             $password = $request->post('password');
             $email = $request->post('email');
             $bio = $request->post('bio');
 
             $isAdmin = ($request->post('isAdmin') != null);
             
+            // Verify that the user actually gave us data
+            if(strlen($username) === 0 || strlen($password) === 0) {
+                $this->app->flashNow('error', 'Invalid username/password.');
+                $this->app->redirect('/admin');
+                return;
+            }
 
             $user->setUsername($username);
-            $user->setPassword($password);
+            $user->setPassword(password_hash($password, PASSWORD_BCRYPT));
             $user->setBio($bio);
             $user->setEmail($email);
             $user->setIsAdmin($isAdmin);
@@ -170,19 +178,25 @@ class UserController extends Controller
             throw new \Exception("Unable to fetch logged in user's object from db.");
         } elseif (Auth::userAccess($tuserid)) {
 
-
             $request = $this->app->request;
 
             $username = $request->post('username');
+            $username = htmlspecialchars($username);
             $password = $request->post('password');
             $email = $request->post('email');
             $bio = $request->post('bio');
 
             $isAdmin = ($request->post('isAdmin') != null);
             
+            // Verify that the user actually gave us data
+            if(strlen($username) === 0 || strlen($password) === 0) {
+                $this->app->flashNow('error', 'Invalid username/password.');
+                $this->app->redirect('/');
+                return;
+            }
 
             $user->setUsername($username);
-            $user->setPassword($password);
+            $user->setPassword(password_hash($password, PASSWORD_BCRYPT));
             $user->setBio($bio);
             $user->setEmail($email);
             $user->setIsAdmin($isAdmin);

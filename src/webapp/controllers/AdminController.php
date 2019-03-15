@@ -37,6 +37,4 @@ class AdminController extends Controller
             $this->app->redirect('/');
         }
     }
-
-
 }
