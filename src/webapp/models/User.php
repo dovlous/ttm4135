@@ -24,7 +24,7 @@ class User
      */
     static function genUUID()
     {
-        return (int)hexdec(bin2hex(openssl_random_pseudo_bytes(16)));
+        return hexdec(bin2hex(openssl_random_pseudo_bytes(4)));
     }
 
     static function make($id, $username, $password, $email, $bio, $isAdmin )
