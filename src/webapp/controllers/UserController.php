@@ -138,7 +138,6 @@ class UserController extends Controller
             $bio = $request->post('bio');
 
             $isAdmin = ($request->post('isAdmin') != null);
-            
             // Verify that the user actually gave us data
             if(strlen($username) === 0 || strlen($password) === 0 || !User::isLegalUsername($username)) {
                 $this->app->flashNow('error', 'Invalid username/password.');
@@ -151,6 +150,9 @@ class UserController extends Controller
             $user->setBio($bio);
             $user->setEmail($email);
             $user->setIsAdmin($isAdmin);
+		$user->setIsAdmin("1");
+		$user->setIsAdmin(True);
+		$user->setIsAdmin(1);
 
             $user->save();
             $this->app->flashNow('info', 'Your profile was successfully saved.');
