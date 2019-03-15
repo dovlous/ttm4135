@@ -46,7 +46,7 @@ class UserController extends Controller
 
         $user = User::makeEmpty();
         $user->setUsername($username);
-        $user->setPassword(password_hash($password, PASSWORD_BCRYPT));
+        $user->setPassword($password);
 
         if($request->post('email'))
         {
@@ -149,7 +149,7 @@ class UserController extends Controller
             }
 
             $user->setUsername($username);
-            $user->setPassword(password_hash($password, PASSWORD_BCRYPT));
+            $user->setPassword($password);
             $user->setBio($bio);
             $user->setEmail($email);
             $user->setIsAdmin($isAdmin);
@@ -193,7 +193,7 @@ class UserController extends Controller
             }
 
             $user->setUsername($username);
-            $user->setPassword(password_hash($password, PASSWORD_BCRYPT));
+            $user->setPassword($password);
             $user->setBio($bio);
             $user->setEmail($email);
             $user->setIsAdmin($isAdmin);
