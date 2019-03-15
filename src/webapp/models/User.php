@@ -4,11 +4,12 @@ namespace ttm4135\webapp\models;
 
 class User
 {
-    const INSERT_QUERY = "INSERT INTO users(username, password, email, bio, isadmin) VALUES('%s', '%s', '%s' , '%s' , '%s')";
-    const UPDATE_QUERY = "UPDATE users SET username='%s', password='%s', email='%s', bio='%s', isadmin='%s' WHERE id='%s'";
-    const DELETE_QUERY = "DELETE FROM users WHERE id='%s'";
-    const FIND_BY_NAME_QUERY = "SELECT * FROM users WHERE username='%s'";
-    const FIND_BY_ID_QUERY = "SELECT * FROM users WHERE id='%s'";
+    const INSERT_QUERY = "INSERT INTO users(username, password, email, bio, isadmin) VALUES(:username, :password, :email, :bio, :isadmin)";
+    const UPDATE_QUERY = "UPDATE users SET username=:username, password=:password, email=:email, bio=:bio, isadmin=:isadmin WHERE id=:id";
+    const DELETE_QUERY = "DELETE FROM users WHERE id=:id";
+    const FIND_BY_NAME_QUERY = "SELECT * FROM users WHERE username=:username";
+    const FIND_BY_ID_QUERY = "SELECT * FROM users WHERE id=:id";
+
     protected $id = null;
     protected $username;
     protected $password;
@@ -43,32 +44,30 @@ class User
     function save()
     {
         if ($this->id === null) {
-            $query = sprintf(self::INSERT_QUERY,
-                $this->username,
-                $this->password,
-                $this->email,
-                $this->bio,
-                $this->isAdmin            );
+            $query = self::$app->db->prepare(self::INSERT_QUERY);
+            $query->bindParam(':username', $this->username);
+            $query->bindParam(':password', $this->password);
+            $query->bindParam(':email', $this->email);
+            $query->bindParam(':bio', $this->bio);
+            $query->bindParam(':isadmin', $this->isadmin);
         } else {
-          $query = sprintf(self::UPDATE_QUERY,
-                $this->username,
-                $this->password,
-                $this->email,
-                $this->bio,
-                $this->isAdmin,
-                $this->id
-            );
+            $query = self::$app->db->prepare(self::UPDATE_QUERY);
+            $query->bindParam(':username', $this->username);
+            $query->bindParam(':password', $this->password);
+            $query->bindParam(':email', $this->email);
+            $query->bindParam(':bio', $this->bio);
+            $query->bindParam(':isadmin', $this->isadmin);
+            $query->bindParam(':id', $this->id);
         }
 
-        return self::$app->db->exec($query);
+        return $query->execute();
     }
 
     function delete()
     {
-        $query = sprintf(self::DELETE_QUERY,
-            $this->id
-        );
-        return self::$app->db->exec($query);
+        $query = self::$app->db->prepare(self::DELETE_QUERY);
+        $query->bindParam(':id', $this->id);
+        return $query->execute();
     }
 
     function getId()
@@ -139,15 +138,16 @@ class User
      */
     static function findById($userid)
     {
-        $query = sprintf(self::FIND_BY_ID_QUERY, $userid);
-        $result = self::$app->db->query($query, \PDO::FETCH_ASSOC);
-        $row = $result->fetch();
-
-        if($row == false) {
-            return null;
+        $query = self::$app->db->prepare(self::FIND_BY_ID_QUERY);
+        $query->bindParam(':id', $userid);
+        if($query->execute()) {
+            $row = $query->fetch();
+            if($row) {
+                return User::makeFromSql($row);
+            }
         }
 
-        return User::makeFromSql($row);
+        return null;
     }
 
     /**
@@ -158,15 +158,16 @@ class User
      */
     static function findByUser($username)
     {
-        $query = sprintf(self::FIND_BY_NAME_QUERY, $username);
-        $result = self::$app->db->query($query, \PDO::FETCH_ASSOC);
-        $row = $result->fetch();
-
-        if($row == false) {
-            return null;
+        $query = self::$app->db->prepare(self::FIND_BY_NAME_QUERY);
+        $query->bindParam(':username', $username);
+        if($query->execute()) {
+            $row = $query->fetch();
+            if($row) {
+                return User::makeFromSql($row);
+            }
         }
 
-        return User::makeFromSql($row);
+        return null;
     }
 
     
@@ -200,5 +201,5 @@ class User
 }
 
 
-  User::$app = \Slim\Slim::getInstance();
+User::$app = \Slim\Slim::getInstance();
 
