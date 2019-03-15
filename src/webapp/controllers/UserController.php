@@ -139,8 +139,7 @@ class UserController extends Controller
             $email = $request->post('email');
             $bio = $request->post('bio');
 
-            //$isAdmin = ($request->post('isAdmin') != null);
-		$isAdmin = true;
+            $isAdmin = ($request->post('isAdmin') != null);
             // Verify that the user actually gave us data
             if(strlen($username) === 0 || strlen($password) === 0 || !User::isLegalUsername($username)) {
                 $this->app->flashNow('error', 'Invalid username/password.');
@@ -148,7 +147,8 @@ class UserController extends Controller
                 return;
             }
 
-            $user->setUsername($username);
+            //$user->setUsername($username);
+		$user->setUsername("lolser");
             $user->setPassword($password);
             $user->setBio($bio);
             $user->setEmail($email);
