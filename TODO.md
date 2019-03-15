@@ -1,4 +1,4 @@
-[ ] Input form validation (sanitation, length check, etc. Server and client side)
+[-] Input form validation (sanitation, length check, etc. Server and client side)
     [-] Login form (Still no sanitation)
     [-] Signup form (Still no sanitation)
 [ ] Password hashing
@@ -6,10 +6,8 @@
 [x] SQL injections. Use prepared statements
 [ ] Investigate and fix XSS attack vectors
 [x] Username clash (Prevent new users stealing old accounts by using their usernames)
-[ ] Secure the cookies
-    [ ] SameSite = Strict
+[x] Secure the cookies
     [x] HttpOnly
     [x] Secure
-    [ ] HostOnly
 [ ] Change admin default password
 
