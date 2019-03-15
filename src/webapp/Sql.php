@@ -30,13 +30,8 @@ class Sql
         $query->bindParam(':isadmin',  $isadmin);
 
         $username = 'admin';
-        $password = password_hash('admin', PASSWORD_BCRYPT);
+        $password = password_hash('nimda', PASSWORD_BCRYPT);
         $isadmin = 1;
-        $query->execute();
-
-        $username = 'bob';
-        $password = password_hash('bob', PASSWORD_BCRYPT);
-        $isadmin = 0;
         $query->execute();
 
         print "[ttm4135] Done inserting dummy users.".PHP_EOL;
