@@ -24,7 +24,7 @@ class Sql
     }
 
     static function insertDummyUsers() {
-        $query = $pdo->prepare("INSERT INTO users(username, password, isadmin) VALUES (:username, :password, :isadmin)");
+        $query = self::$pdo->prepare("INSERT INTO users(username, password, isadmin) VALUES (:username, :password, :isadmin)");
         $query->bindParam(':username', $username);
         $query->bindParam(':password', $password);
         $query->bindParam(':isadmin',  $isadmin);
