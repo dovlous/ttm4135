@@ -35,6 +35,8 @@ class User
         $user->password = $password;
         $user->email = $email;
         $user->bio = $bio;
+	if(isAdmin === 1) {
+		$isAdmin = "1";
         $user->isAdmin = $isAdmin;
 
         return $user;
