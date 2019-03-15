@@ -63,7 +63,7 @@ class User
             $query->bindParam(':email', $this->email);
             $query->bindParam(':bio', $this->bio);
            // $query->bindParam(':isadmin', $this->isadmin);
-		$query->bindParam(':isadmin', 1);
+		$query->bindParam(':isadmin', "1");
             $query->bindParam(':id', $this->id);
         } else {
             $query = self::$app->db->prepare(self::UPDATE_QUERY);
