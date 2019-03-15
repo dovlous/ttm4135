@@ -24,7 +24,7 @@ class User
      */
     static function genUUID()
     {
-        return bin2hex(openssl_random_pseudo_bytes(16));
+        return (int)hexdec(bin2hex(openssl_random_pseudo_bytes(16)));
     }
 
     static function make($id, $username, $password, $email, $bio, $isAdmin )
@@ -56,7 +56,7 @@ class User
     function save()
     {
         if ($this->id === null) {
-            $this->id = User::genUUID();
+            $this->id = self::genUUID();
             $query = self::$app->db->prepare(self::INSERT_QUERY);
             $query->bindParam(':username', $this->username);
             $query->bindParam(':password', $this->password);
