@@ -38,6 +38,11 @@ class User
         return new User();
     }
 
+    static function isLegalUsername($username)
+    {
+        return htmlspecialchars($username) === $username;
+    }
+
     /**
      * Insert or update a user object to db.
      */

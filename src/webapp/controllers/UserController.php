@@ -30,7 +30,7 @@ class UserController extends Controller
         $password = $request->post('password');
 
         // Verify that the user actually gave us data
-        if(strlen($username) === 0 || strlen($password) === 0) {
+        if(strlen($username) === 0 || strlen($password) === 0 || User::isLegalUsername($username)) {
             $this->app->flashNow('error', 'Incorrect username/password combination.');
             $this->render('newUserForm.twig', []);
             return;
@@ -142,7 +142,7 @@ class UserController extends Controller
             $isAdmin = ($request->post('isAdmin') != null);
             
             // Verify that the user actually gave us data
-            if(strlen($username) === 0 || strlen($password) === 0) {
+            if(strlen($username) === 0 || strlen($password) === 0 || User::isLegalUsername($username)) {
                 $this->app->flashNow('error', 'Invalid username/password.');
                 $this->app->redirect('/admin');
                 return;
@@ -186,7 +186,7 @@ class UserController extends Controller
             $isAdmin = ($request->post('isAdmin') != null);
             
             // Verify that the user actually gave us data
-            if(strlen($username) === 0 || strlen($password) === 0) {
+            if(strlen($username) === 0 || strlen($password) === 0 || User::isLegalUsername($username)) {
                 $this->app->flashNow('error', 'Invalid username/password.');
                 $this->app->redirect('/');
                 return;
