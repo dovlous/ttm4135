@@ -4,7 +4,7 @@ namespace ttm4135\webapp\models;
 
 class User
 {
-    const INSERT_QUERY = "INSERT INTO users(username, password, email, bio, isadmin) VALUES(:username, :password, :email, :bio, :isadmin)";
+    const INSERT_QUERY = "INSERT INTO users(id, username, password, email, bio, isadmin) VALUES(:id, :username, :password, :email, :bio, :isadmin)";
     const UPDATE_QUERY = "UPDATE users SET username=:username, password=:password, email=:email, bio=:bio, isadmin=:isadmin WHERE id=:id";
     const DELETE_QUERY = "DELETE FROM users WHERE id=:id";
     const FIND_BY_NAME_QUERY = "SELECT * FROM users WHERE username=:username";
@@ -19,6 +19,13 @@ class User
 
     static $app;
 
+    /**
+     * Generate a unique number for use as user ID
+     */
+    static function genUUID()
+    {
+        return hexdec(bin2hex(openssl_random_pseudo_bytes(16)));
+    }
 
     static function make($id, $username, $password, $email, $bio, $isAdmin )
     {
@@ -49,12 +56,14 @@ class User
     function save()
     {
         if ($this->id === null) {
+            $this->id = User::genUUID();
             $query = self::$app->db->prepare(self::INSERT_QUERY);
             $query->bindParam(':username', $this->username);
             $query->bindParam(':password', $this->password);
             $query->bindParam(':email', $this->email);
             $query->bindParam(':bio', $this->bio);
             $query->bindParam(':isadmin', $this->isadmin);
+            $query->bindParam(':id', $this->id);
         } else {
             $query = self::$app->db->prepare(self::UPDATE_QUERY);
             $query->bindParam(':username', $this->username);

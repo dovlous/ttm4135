@@ -130,8 +130,6 @@ class UserController extends Controller
         $user = User::makeEmpty();
 
         if (Auth::isAdmin()) {
-
-
             $request = $this->app->request;
 
             $username = $request->post('username');

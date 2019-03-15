@@ -1,6 +1,6 @@
-[-] Input form validation (sanitation, length check, etc. Server and client side)
-    [-] Login form (Still no sanitation)
-    [-] Signup form (Still no sanitation)
+[x] Input form validation (sanitation, length check, etc. Server and client side)
+    [x] Login form (Still no sanitation)
+    [x] Signup form (Still no sanitation)
 [x] Password hashing
 [x] Password salting
 [x] SQL injections. Use prepared statements
