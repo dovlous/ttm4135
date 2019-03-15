@@ -35,6 +35,7 @@ class LoginController extends Controller
         }
 
         if ( Auth::checkCredentials($username, $password) ) {
+            session_regenerate_id();
             $user = User::findByUser($username);
             $_SESSION['userid'] = $user->getId();
             $this->app->flash('info', "You are now successfully logged in as " . $user->getUsername() . ".");
