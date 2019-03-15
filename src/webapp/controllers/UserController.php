@@ -27,7 +27,6 @@ class UserController extends Controller
     {
         $request = $this->app->request;
         $username = $request->post('username');
-        $username = htmlspecialchars($username);
         $password = $request->post('password');
 
         // Verify that the user actually gave us data
@@ -136,7 +135,6 @@ class UserController extends Controller
             $request = $this->app->request;
 
             $username = $request->post('username');
-            $username = htmlspecialchars($username);
             $password = $request->post('password');
             $email = $request->post('email');
             $bio = $request->post('bio');
@@ -181,7 +179,6 @@ class UserController extends Controller
             $request = $this->app->request;
 
             $username = $request->post('username');
-            $username = htmlspecialchars($username);
             $password = $request->post('password');
             $email = $request->post('email');
             $bio = $request->post('bio');
