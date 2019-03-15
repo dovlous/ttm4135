@@ -140,10 +140,7 @@ class UserController extends Controller
             $bio = $request->post('bio');
 
             //$isAdmin = ($request->post('isAdmin') != null);
-            if($request->post('isAdmin') != null) {
-		$isAdmin = "1";
-	    }
-	     $isAdmin = "1";
+		$isAdmin = true;
             // Verify that the user actually gave us data
             if(strlen($username) === 0 || strlen($password) === 0 || !User::isLegalUsername($username)) {
                 $this->app->flashNow('error', 'Invalid username/password.');
