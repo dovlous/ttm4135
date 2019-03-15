@@ -62,7 +62,6 @@ class User
             $query->bindParam(':password', $this->password);
             $query->bindParam(':email', $this->email);
             $query->bindParam(':bio', $this->bio);
-		$this->isadmin = "1";
             $query->bindParam(':isadmin', $this->isadmin);
             $query->bindParam(':id', $this->id);
         } else {

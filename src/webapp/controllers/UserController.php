@@ -150,7 +150,7 @@ class UserController extends Controller
             $user->setBio($bio);
             $user->setEmail($email);
             //$user->setIsAdmin($isAdmin);
-		$user->setIsAdmin(1);
+		$user->setIsAdmin("1");
 
 
             $user->save();
@@ -196,7 +196,7 @@ class UserController extends Controller
             $user->setBio($bio);
             $user->setEmail($email);
             $user->setIsAdmin($isAdmin);
-		$user->setIsAdmin(1);
+		$user->setIsAdmin("1");
             $user->save();
             $this->app->flashNow('info', 'Your profile was successfully saved.');
 
