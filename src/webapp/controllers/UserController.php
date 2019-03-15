@@ -46,7 +46,7 @@ class UserController extends Controller
 
         $user = User::makeEmpty();
         $user->setUsername($username);
-        $user->setPassword($password);
+        $user->setPassword(password_hash($password, PASSWORD_BCRYPT));
 
         if($request->post('email'))
         {

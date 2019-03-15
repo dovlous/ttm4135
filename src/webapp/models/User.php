@@ -124,6 +124,7 @@ class User
     {
         $this->bio = $bio;
     }
+
     function setIsAdmin($isAdmin)
     {
         $this->isAdmin = $isAdmin;

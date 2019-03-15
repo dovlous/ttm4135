@@ -24,17 +24,23 @@ class Sql
     }
 
     static function insertDummyUsers() {
+        $query = $pdo->prepare("INSERT INTO users(username, password, isadmin) VALUES (:username, :password, :isadmin)");
+        $query->bindParam(':username', $username);
+        $query->bindParam(':password', $password);
+        $query->bindParam(':isadmin',  $isadmin);
 
+        $username = 'admin';
+        $password = password_hash('admin', PASSWORD_BCRYPT);
+        $isadmin = 1;
+        $query->execute();
 
-        $q1 = "INSERT INTO users(username, password, isadmin) VALUES ('admin', 'admin', 1)";
-        $q2 = "INSERT INTO users(username, password) VALUES ('bob', 'bob')";
-
-        self::$pdo->exec($q1);
-        self::$pdo->exec($q2);
+        $username = 'bob';
+        $password = password_hash('bob', PASSWORD_BCRYPT);
+        $isadmin = 0;
+        $query->execute();
 
         print "[ttm4135] Done inserting dummy users.".PHP_EOL;
     }
-
 
     static function down() {
         $q1 = "DROP TABLE users";
