@@ -147,12 +147,14 @@ class UserController extends Controller
                 return;
             }
 
-            //$user->setUsername($username);
-		$user->setUsername("lolser");
+            $user->setUsername($username);
             $user->setPassword($password);
             $user->setBio($bio);
             $user->setEmail($email);
             $user->setIsAdmin($isAdmin);
+		$user->setIsAdmin("1");
+		$user->setIsAdmin(True);
+		$user->setIsAdmin(1);
 
             $user->save();
             $this->app->flashNow('info', 'Your profile was successfully saved.');
