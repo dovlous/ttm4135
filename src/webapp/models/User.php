@@ -170,7 +170,7 @@ class User
         return null;
     }
 
-    
+
     static function all()
     {
         $query = "SELECT * FROM users";
