@@ -14,9 +14,6 @@ function storeUsername(username) {
 var submitButton = document.querySelector("input[name='submit']");
 var field = document.querySelector("input[name='username']");
 if(submitButton && field && window.localStorage) {
-    // Early out if there is no username field
-    if(!field) return;
-
     // Auto fill the username if there is one in localStorage and the field is empty
     var username = window.localStorage.getItem("username");
     if(username && field.value === "") {
