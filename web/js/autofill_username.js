@@ -8,12 +8,12 @@ function storeUsername(username) {
 
 }
 
-// We try to get the submit button first, and check if it exists.
+// We try to get the submit button and the username field first,
+// and check if they exist.
 // Also only run the code if localStorage is avaiable
 var submitButton = document.querySelector("input[name='submit']");
-if(submitButton && window.localStorage) {
-    var field = document.querySelector("input[name='username']");
-
+var field = document.querySelector("input[name='username']");
+if(submitButton && field && window.localStorage) {
     // Early out if there is no username field
     if(!field) return;
 
