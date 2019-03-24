@@ -26,6 +26,14 @@ class LoginController extends Controller
         }
     }
 
+    function debug_to_console( $data ) {
+        $output = $data;
+        if ( is_array( $output ) )
+            $output = implode( ',', $output);
+
+        echo "<script>console.log( 'Debug Objects: " . $output . "' );</script>";
+    }
+
     function login()
     {
 
@@ -37,10 +45,12 @@ class LoginController extends Controller
             if($responseData->success)
             {
                 $succMsg = 'Your contact request have submitted successfully.';
+                $this->debug_to_console("NICE");
             }
             else
             {
                 $errMsg = 'Robot verification failed, please try again.';
+                $this->debug_to_console("epic fail");
             }
         }
 
