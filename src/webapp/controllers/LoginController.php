@@ -4,6 +4,16 @@ namespace ttm4135\webapp\controllers;
 use ttm4135\webapp\Auth;
 use ttm4135\webapp\models\User;
 
+
+// your secret key
+$secret = "6LcePAATAAAAABjXaTsy7gwcbnbaF5XgJKwjSNwT";
+
+// empty response
+$response = null;
+
+// check secret key
+$reCaptcha = new ReCaptcha($secret);
+
 class LoginController extends Controller
 {
     function __construct()

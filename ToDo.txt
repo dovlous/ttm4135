@@ -1,0 +1,3 @@
+1. Turn of folder navigation
+2. Stop showing errors
+3. Stop sql injections 
