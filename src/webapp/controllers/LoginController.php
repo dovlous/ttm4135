@@ -3,6 +3,7 @@
 namespace ttm4135\webapp\controllers;
 use ttm4135\webapp\Auth;
 use ttm4135\webapp\models\User;
+use ttm4135\webapp\recaptchalib;
 
 require_once "recaptchalib.php";
 
