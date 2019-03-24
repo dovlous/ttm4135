@@ -6,16 +6,7 @@ use ttm4135\webapp\Auth;
 use ttm4135\webapp\models\User;
 
 
-require_once $_SERVER['DOCUMENT_ROOT'] . 'recaptchalib.php';
 
-// your secret key
-$secret = "6LcePAATAAAAABjXaTsy7gwcbnbaF5XgJKwjSNwT";
-
-// empty response
-$response = null;
-
-// check secret key
-$reCaptcha = new ReCaptcha($secret);
 
 class LoginController extends Controller
 {
@@ -37,6 +28,23 @@ class LoginController extends Controller
 
     function login()
     {
+
+        if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response']))
+        {
+            $secret = '6LeMH5kUAAAAAFEUUMvTA9ZeUoQ_3dxDI6P8hIGM';
+            $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
+            $responseData = json_decode($verifyResponse);
+            if($responseData->success)
+            {
+                $succMsg = 'Your contact request have submitted successfully.';
+            }
+            else
+            {
+                $errMsg = 'Robot verification failed, please try again.';
+            }
+        }
+
+
         $request = $this->app->request;
         $username = $request->post('username');
         $password = $request->post('password');
