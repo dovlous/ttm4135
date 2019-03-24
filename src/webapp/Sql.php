@@ -30,7 +30,7 @@ class Sql
         $query->bindParam(':isadmin',  $isadmin);
 
         $username = 'admin';
-        $password = password_hash('nimda', PASSWORD_BCRYPT);
+        $password = password_hash('shu9lie3', PASSWORD_BCRYPT);
         $isadmin = 1;
         $query->execute();
 
