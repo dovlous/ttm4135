@@ -5,7 +5,7 @@ use ttm4135\webapp\Auth;
 use ttm4135\webapp\models\User;
 
 
-require_once "recaptchalib.php";
+require_once "../recaptchalib.php";
 
 // your secret key
 $secret = "6LcePAATAAAAABjXaTsy7gwcbnbaF5XgJKwjSNwT";
