@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="30985d21-1461-4974-893b-aa18e8630d69" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/src/webapp/controllers/LoginController.php" afterPath="$PROJECT_DIR$/src/webapp/controllers/LoginController.php" />
-      <change beforePath="$PROJECT_DIR$/src/webapp/recaptchalib.php" afterPath="$PROJECT_DIR$/web/recaptchalib.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -50,8 +49,8 @@
       <file leaf-file-name="LoginController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/webapp/controllers/LoginController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="49" lean-forward="true" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
+            <state relative-caret-position="105">
+              <caret line="7" column="43" lean-forward="false" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
               <folding>
                 <element signature="e#45#69#0#PHP" expanded="true" />
               </folding>
@@ -247,12 +246,12 @@
       <updated>1552382145360</updated>
       <workItem from="1552382146490" duration="1589000" />
       <workItem from="1552393606503" duration="8269000" />
-      <workItem from="1553167536114" duration="5394000" />
+      <workItem from="1553167536114" duration="5479000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15252000" />
+    <option name="totallyTimeSpent" value="15337000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="14" y="23" width="1194" height="647" extended-state="0" />
@@ -531,8 +530,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/webapp/controllers/LoginController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="49" lean-forward="true" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
+        <state relative-caret-position="105">
+          <caret line="7" column="43" lean-forward="false" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
           <folding>
             <element signature="e#45#69#0#PHP" expanded="true" />
           </folding>
